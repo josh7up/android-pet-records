@@ -58,7 +58,7 @@ fun WeightRoute(
     ) {
         Button(onClick = onBack) { Text("Back") }
         Text("Weight trend", style = MaterialTheme.typography.headlineMedium)
-        Text("Pet ID: ${uiState.petId}")
+        Text("Pet: ${uiState.petName.ifBlank { uiState.petId }}")
         Card(modifier = Modifier.fillMaxWidth()) {
             if (uiState.points.isEmpty()) {
                 Text("No weight measurements yet.", modifier = Modifier.padding(16.dp))

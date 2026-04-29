@@ -12,6 +12,9 @@ interface PetDao {
     @Query("SELECT * FROM pets ORDER BY name ASC")
     fun observeAll(): Flow<List<PetEntity>>
 
+    @Query("SELECT * FROM pets WHERE id = :petId LIMIT 1")
+    fun observeById(petId: String): Flow<PetEntity?>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertAll(items: List<PetEntity>)
 

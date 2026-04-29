@@ -7,10 +7,7 @@
 build/
 */build/
 
-.idea/caches/
-.idea/libraries/
-.idea/modules.xml
-.idea/workspace.xml
+.idea/
 
 local.properties
 captures/

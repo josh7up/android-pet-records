@@ -17,6 +17,8 @@ class PetRepository @Inject constructor(
 ) {
     val pets: Flow<List<Pet>> = petDao.observeAll().map { items -> items.map(PetEntity::toModel) }
 
+    fun observePet(petId: String): Flow<Pet?> = petDao.observeById(petId).map { it?.toModel() }
+
     suspend fun refresh(query: String = "", species: PetSpecies? = null) {
         val response = api.getPets(query = query.ifBlank { null }, species = species?.name)
         petDao.clear()
