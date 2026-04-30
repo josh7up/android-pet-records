@@ -36,12 +36,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-        }
-    }
-
     buildFeatures {
         compose = true
         buildConfig = true
@@ -77,6 +71,8 @@ dependencies {
     implementation(libs.com.squareup.okhttp3.logging.interceptor)
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
     implementation(libs.com.google.dagger.hilt.android)
+    implementation(libs.vico.compose)
+    implementation(libs.vico.compose.m3)
 
     ksp(libs.androidx.room.compiler)
     ksp(libs.androidx.hilt.compiler)
