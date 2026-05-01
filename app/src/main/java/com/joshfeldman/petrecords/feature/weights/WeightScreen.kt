@@ -171,7 +171,9 @@ private fun formatAxisDate(value: String, locale: Locale = Locale.getDefault()):
 
 private fun formatDate(date: Date, locale: Locale, skeleton: String): String {
     val pattern = DateFormat.getBestDateTimePattern(locale, skeleton)
-    return SimpleDateFormat(pattern, locale).format(date)
+    return SimpleDateFormat(pattern, locale).apply {
+        timeZone = TimeZone.getTimeZone("UTC")
+    }.format(date)
 }
 
 private fun parseMeasuredAtDate(value: String): Date? {
