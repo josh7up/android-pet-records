@@ -68,8 +68,6 @@ private fun PetsScreen(
                 ) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text(pet.name, style = MaterialTheme.typography.titleMedium)
-                        Text("${pet.species}${pet.breed?.let { " • $it" } ?: ""}")
-                        Text("Tap to view weight trend")
                     }
                 }
             }
