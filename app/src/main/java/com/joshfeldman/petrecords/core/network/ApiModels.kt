@@ -1,6 +1,5 @@
 package com.joshfeldman.petrecords.core.network
 
-import com.google.gson.annotations.SerializedName
 import com.joshfeldman.petrecords.core.model.DocumentRecord
 import com.joshfeldman.petrecords.core.model.ExtractedField
 import com.joshfeldman.petrecords.core.model.OcrPage
@@ -72,6 +71,7 @@ data class DocumentRecordDto(
     val pages: List<OcrPageDto>?,
     val extractedFields: List<ExtractedFieldDto>?,
     val petCandidates: List<PetCandidateDto>?,
+    val visits: List<SearchVisitDto>?,
 ) {
     fun toModel() = DocumentRecord(
         id = id,
@@ -113,7 +113,7 @@ data class SearchVisitDto(
     val pet: PetDto,
     val lineItems: List<VisitLineItemDto>?,
     val reminders: List<ReminderDto>?,
-    val document: DocumentRecordDto,
+    val document: DocumentRecordDto?,
 ) {
     fun toModel() = SearchVisit(
         id = id,
@@ -124,7 +124,13 @@ data class SearchVisitDto(
         pet = pet.toModel(),
         lineItems = lineItems.orEmpty().map(VisitLineItemDto::toModel),
         reminders = reminders.orEmpty().map(ReminderDto::toModel),
-        document = document.toModel(),
+        document = document?.toModel() ?: DocumentRecord(
+            id = "",
+            householdId = "",
+            originalName = "",
+            uploadedAt = "",
+            ocrStatus = "",
+        ),
     )
 }
 

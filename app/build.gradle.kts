@@ -8,10 +8,11 @@ plugins {
 android {
     namespace = "com.joshfeldman.petrecords"
     compileSdk = 36
+    compileSdkExtension = 19
 
     defaultConfig {
         applicationId = "com.joshfeldman.petrecords"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -66,6 +67,8 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.pdf.viewer)
+    implementation(libs.androidx.pdf.viewer.fragment)
     implementation(libs.com.squareup.retrofit2.retrofit)
     implementation(libs.com.squareup.retrofit2.converter.gson)
     implementation(libs.com.squareup.okhttp3.logging.interceptor)

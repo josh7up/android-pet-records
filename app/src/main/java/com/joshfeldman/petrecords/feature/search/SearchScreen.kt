@@ -27,7 +27,10 @@ import java.util.Locale
 import java.util.TimeZone
 
 @Composable
-fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
+fun SearchRoute(
+    onRecordClick: (String) -> Unit,
+    viewModel: SearchViewModel = hiltViewModel(),
+) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier
@@ -48,7 +51,10 @@ fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
         }
         LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             items(uiState.visits, key = { it.id }) { visit ->
-                Card(modifier = Modifier.fillMaxWidth()) {
+                Card(
+                    onClick = { onRecordClick(visit.id) },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text(visit.petNamesLabel, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                         Text(formatVisitDate(visit.visitDate))

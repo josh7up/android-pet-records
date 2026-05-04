@@ -30,6 +30,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.joshfeldman.petrecords.feature.pets.PetsRoute
+import com.joshfeldman.petrecords.feature.record.RecordRoute
 import com.joshfeldman.petrecords.feature.search.SearchRoute
 import com.joshfeldman.petrecords.feature.settings.SettingsRoute
 import com.joshfeldman.petrecords.feature.upload.UploadRoute
@@ -92,7 +93,7 @@ fun PetRecordsApp() {
                 PetsRoute(onOpenWeightTrend = { petId -> navController.navigate("weights/$petId") })
             }
             composable(TopLevelDestination.Search.route) {
-                SearchRoute()
+                SearchRoute(onRecordClick = { recordId -> navController.navigate("record/$recordId") })
             }
             composable(TopLevelDestination.Upload.route) {
                 UploadRoute(onMessage = { message -> scope.launch { snackbarHostState.showSnackbar(message) } })
@@ -105,6 +106,12 @@ fun PetRecordsApp() {
                 arguments = listOf(navArgument("petId") { type = NavType.StringType }),
             ) {
                 WeightRoute(onBack = { navController.popBackStack() })
+            }
+            composable(
+                route = "record/{recordId}",
+                arguments = listOf(navArgument("recordId") { type = NavType.StringType }),
+            ) {
+                RecordRoute(onBack = { navController.popBackStack() })
             }
         }
     }
